@@ -31,7 +31,7 @@ public class FacebookLogin implements LoginStrategy {
 
     @Override
     public UserResponse login(HttpServletRequest request) {
-        String code = request.getParameter(FACEBOOK_PARAMETER_CODE);
+        String code = request.getParameter(CODE_PARAMETER);
         AccessToken accessToken = new DefaultFacebookClient(Version.LATEST).obtainUserAccessToken(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_REDIRECT_URI, code);
         FacebookClient facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), Version.LATEST);
         User user = facebookClient.fetchObject("me", User.class, Parameter.with(fields, data));

@@ -2,6 +2,7 @@ package com.servise.login.google.controller;
 
 import com.model.UserResponse;
 import com.servise.login.LoginStrategy;
+import com.servise.login.google.adapter.GoogleUserToUserAdapter;
 import com.servise.login.google.login.GoogleLogin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class GoogleLoginController {
 
-    private LoginStrategy loginStrategy = new GoogleLogin();
+    private LoginStrategy loginStrategy = new GoogleLogin(new GoogleUserToUserAdapter());
 
     @GetMapping("/google-login")
     public String GoogleLogin() {
